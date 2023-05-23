@@ -6,17 +6,18 @@ pygame.init()
 relogio = pygame.time.Clock()
 largura,altura=800,600
 tela = pygame.display.set_mode((largura,altura))
-fundo = pygame.image.load(os.path.join("assets","img","espaco.png")).convert_alpha()
-nave = pygame.image.load(os.path.join("assets","img","ship.png")).convert_alpha()
+fundo = pygame.image.load(os.path.join("space","assets","img","espaco.png")).convert_alpha()
+nave = pygame.image.load(os.path.join("space","assets","img","ship.png")).convert_alpha()
 nave= pygame.transform.scale(nave,(40,40))
 fundorec=fundo.get_rect(center=((largura/2,(altura/2))))
-tiro= pygame.image.load(os.path.join("assets","img","laser.png")).convert_alpha()
+tiro= pygame.image.load(os.path.join("space","assets","img","laser.png")).convert_alpha()
 #tiro= pygame.transform.scale(tiro,(40,40))
 bullets = []
 def fire_bullet():
-    for tirorec in bullets:
-        tirorec = tiro.get_rect(center=(navrec.midtop))
-        bullets.append([tirorec])
+    
+    
+    tirorec = tiro.get_rect(center=(navrec.midtop))
+    bullets.append([tirorec])
 
     print(bullets)
 posy_y=500
@@ -26,7 +27,7 @@ navrec= nave.get_rect(center=(posy_y,posy_x))
 
 print(navrec)
 
-font=pygame.font.Font(os.path.join("assets","Font","Sigmar","Sigmar-Regular.ttf"),16)
+font=pygame.font.Font(os.path.join("space","assets","Font","Sigmar","Sigmar-Regular.ttf"),16)
 
 texto=font.render('Space',True,(65,105,225))
 
@@ -65,7 +66,7 @@ while loop:
     tela.blit(texto,rectex)
     tela.blit(nave, navrec)
     for tirorec in bullets:
-        tela.blit(tiro,tirorec)
+        tela.blit(tiro,tirorec[0])
     #if navrec.y>=10:
        # navrec.y-=1
     ##tela.fill((0,0,0))
