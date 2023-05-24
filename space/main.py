@@ -14,11 +14,7 @@ tiro= pygame.image.load(os.path.join("space","assets","img","laser.png")).conver
 #tiro= pygame.transform.scale(tiro,(40,40))
 
 bullets = []
-def fire_bullet(bullets):
-    for rec in bullets:
-        rec.y-=30
-        if tirorec.bottom < 0:
-            bullets.remov(rec)
+
 
     
     
@@ -40,7 +36,13 @@ pygame.display.set_caption("space kombat")
 
 r,g,b = 0,0,0
 #for tirorec in bullets:
-    
+def fire_bullet(bullets):
+    tirorec= tiro.get_rect(midbottom=navrec.midtop)
+    bullets.append(tirorec)
+    for tirorec in bullets:
+        tirorec.y-=round(10)
+        if tirorec.y < 0:
+           bullets.remove(tirorec)  
 loop=True
 while loop:
     start = int(round(time.time()*1000))  
@@ -59,8 +61,11 @@ while loop:
     if key[pygame.K_a]:
         navrec.x-=3
     if key[pygame.K_SPACE]:
-        tirorec= tiro.get_rect(midbottom=navrec.midtop)
-        bullets.append(tirorec)
+        
+        fire_bullet(bullets)
+        
+        
+        
 
           
 
