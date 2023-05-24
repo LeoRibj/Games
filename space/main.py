@@ -12,14 +12,17 @@ nave= pygame.transform.scale(nave,(40,40))
 fundorec=fundo.get_rect(center=((largura/2,(altura/2))))
 tiro= pygame.image.load(os.path.join("space","assets","img","laser.png")).convert_alpha()
 #tiro= pygame.transform.scale(tiro,(40,40))
-bullets = []
-def fire_bullet():
-    
-    
-    tirorec = tiro.get_rect(center=(navrec.midtop))
-    bullets.append([tirorec])
 
-    print(bullets)
+bullets = []
+def fire_bullet(bullets):
+    for rec in bullets:
+        rec.y-=30
+        if tirorec.bottom < 0:
+            bullets.remov(rec)
+
+    
+    
+
 posy_y=500
 posy_x=500
 
@@ -56,8 +59,8 @@ while loop:
     if key[pygame.K_a]:
         navrec.x-=3
     if key[pygame.K_SPACE]:
-        fire_bullet()
-        
+        tirorec= tiro.get_rect(midbottom=navrec.midtop)
+        bullets.append(tirorec)
 
           
 
@@ -66,7 +69,7 @@ while loop:
     tela.blit(texto,rectex)
     tela.blit(nave, navrec)
     for tirorec in bullets:
-        tela.blit(tiro,tirorec[0])
+        tela.blit(tiro,tirorec)
     #if navrec.y>=10:
        # navrec.y-=1
     ##tela.fill((0,0,0))
