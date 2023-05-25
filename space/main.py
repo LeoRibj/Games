@@ -55,9 +55,10 @@ def meteoro_vaic(meteoros):
     if meteorocai=="caindo":
         meteororec=meteoro.get_rect(midtop=(num_rand,0))
         meteoros.append(meteororec)
+    
 
     
-num_caida=random.randint(-10,10)     
+     
 loop=True
 while loop:
     start = int(round(time.time()*1000))  
@@ -88,19 +89,16 @@ while loop:
             bullets.remove(tirorec)
     
     num_rand=random.randint(0,800)
-    
+    meteoro_vaic(meteoros)
     for meteororec in meteoros:
+        ##num_caida=random.randint(-10,10)
         meteororec.y+=5
-        #meteororec.x-=num_caida
+        ##meteororec.x-=num_caida
         meteorocai=".."
         if meteororec.y > 600:
             meteoros.remove(meteororec)
             meteorocai="caindo"
 
-    if tirorec.colliderect(meteororec):
-        score+=1
-        meteoros.remove(meteororec)
-        meteorocai="caindo"  
     
 
     relogio.tick(120) 
