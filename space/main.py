@@ -47,9 +47,10 @@ pygame.display.set_caption("space kombat")
 r,g,b = 0,0,0
 #for tirorec in bullets:
 def fire_bullet(bullets):
+     
     tirorec= tiro.get_rect(midbottom=navrec.midtop)
     bullets.append(tirorec)
-    
+
 
 def meteoro_vaic(meteoros):
     if meteorocai=="caindo":
@@ -80,6 +81,9 @@ while loop:
         if(tiro_estado=='ready'):
             fire_bullet(bullets)
         
+    num_rand=random.randint(0,800)
+    meteoro_vaic(meteoros)
+
 
     for tirorec in bullets:
         tirorec.y-=(10)
@@ -88,18 +92,18 @@ while loop:
             tiro_estado="ready"
             bullets.remove(tirorec)
     
-    num_rand=random.randint(0,800)
-    meteoro_vaic(meteoros)
+    
+    
     for meteororec in meteoros:
-        ##num_caida=random.randint(-10,10)
+        #num_caida=random.randint(-10,10)
         meteororec.y+=5
-        ##meteororec.x-=num_caida
+        #meteororec.x-=num_caida
         meteorocai=".."
         if meteororec.y > 600:
             meteoros.remove(meteororec)
             meteorocai="caindo"
 
-    if tirorec.colliderect(meteororec):
+    if meteororec.colliderect(tirorec):
         score+=1
         meteoros.remove(meteororec)
         meteorocai="caindo"
