@@ -79,7 +79,6 @@ while loop:
         if(tiro_estado=='ready'):
             fire_bullet(bullets)
         
-    
 
     for tirorec in bullets:
         tirorec.y-=(10)
@@ -101,7 +100,7 @@ while loop:
     if tirorec.colliderect(meteororec):
         score+=1
         meteoros.remove(meteororec)
-        meteorocai="caindo"   
+        meteorocai="caindo"  
     
 
     relogio.tick(120) 
