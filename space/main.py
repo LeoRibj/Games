@@ -99,8 +99,10 @@ while loop:
             meteoros.remove(meteororec)
             meteorocai="caindo"
 
-    
-
+    if tirorec.colliderect(meteororec):
+        score+=1
+        meteoros.remove(meteororec)
+        meteorocai="caindo"
     relogio.tick(120) 
     tela.blit(fundo,(0,0))
     tela.blit(texto,rectex)
