@@ -10,7 +10,7 @@ largura,altura=800,600
 tela = pygame.display.set_mode((largura,altura))
 fundo = pygame.image.load(os.path.join("space","assets","img","espaco.png")).convert_alpha()
 nave = pygame.image.load(os.path.join("space","assets","img","ship.png")).convert_alpha()
-nave= pygame.transform.scale(nave,(190,120))
+nave= pygame.transform.scale(nave,(150,80))
 fundorec=fundo.get_rect(center=((largura/2,(altura/2))))
 tiro= pygame.image.load(os.path.join("space","assets","img","laser.png")).convert_alpha()
 meteoro= pygame.image.load(os.path.join("space","assets","img","meteor.png")).convert_alpha()
