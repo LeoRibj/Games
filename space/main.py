@@ -10,7 +10,7 @@ largura,altura=800,600
 tela = pygame.display.set_mode((largura,altura))
 fundo = pygame.image.load(os.path.join("space","assets","img","espaco.png")).convert_alpha()
 nave = pygame.image.load(os.path.join("space","assets","img","ship.png")).convert_alpha()
-nave= pygame.transform.scale(nave,(40,40))
+nave= pygame.transform.scale(nave,(190,120))
 fundorec=fundo.get_rect(center=((largura/2,(altura/2))))
 tiro= pygame.image.load(os.path.join("space","assets","img","laser.png")).convert_alpha()
 meteoro= pygame.image.load(os.path.join("space","assets","img","meteor.png")).convert_alpha()
@@ -70,17 +70,24 @@ while loop:
         
     key = pygame.key.get_pressed()
     if key[pygame.K_s]:
-        navrec.y+=3
+        if navrec.y<=480:
+            navrec.y+=6
     if key[pygame.K_w]:
-        navrec.y-=3
+        if navrec.y>=10:
+            navrec.y-=6
     if  key[pygame.K_d]:
-        navrec.x+=3
+        navrec.x+=6
     if key[pygame.K_a]:
-        navrec.x-=3
+        navrec.x-=6
     if key[pygame.K_SPACE]:
         if(tiro_estado=='ready'):
             fire_bullet(bullets)
-        
+
+    if navrec.x > 800:
+        navrec.x=-80
+    if navrec.x < -140:
+        navrec.x=800
+
     num_rand=random.randint(0,800)
     meteoro_vaic(meteoros)
 
