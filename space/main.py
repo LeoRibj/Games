@@ -116,7 +116,7 @@ while loop:
 
     for i in range(len(meteoros)) :
         for j in range(len(bullets)):
-            if bullets[i].colliderect(meteoros[i]):
+            if bullets[j].colliderect(meteoros[i]):
                 score+=1
                 meteoros.remove(meteororec)
                 meteorocai="caindo"
