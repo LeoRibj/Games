@@ -28,16 +28,17 @@ posy_x=500
 
 navrec= nave.get_rect(center=(posy_y,posy_x))
 
-
-
+life = pygame.image.load(os.path.join("space","assets","img","ship.png")).convert_alpha()
+life= pygame.transform.scale(nave,(60,20))
+liferec= life.get_rect(center=(740,15))
     
-
+vidas=3
 
 print(navrec)
 
 font=pygame.font.Font(os.path.join("space","assets","Font","Sigmar","Sigmar-Regular.ttf"),16)
 score=0
-texto=font.render('score:',True,(65,105,225))
+texto=font.render('score:',True,(225,225,225))
 
 rectex=texto.get_rect(center=(50,10))
 
@@ -58,7 +59,7 @@ def meteoro_vaic(meteoros):
         meteoros.append(meteororec)
     
 
-    
+   
      
 loop=True
 while loop:
@@ -99,7 +100,8 @@ while loop:
             tiro_estado="ready"
             bullets.remove(tirorec)
     
-    speedmet=2
+    if score <= 5:
+        speedmet=2
     if score >= 5:
         speedmet=4  
     if score >= 10:
@@ -112,10 +114,12 @@ while loop:
         if meteororec.y > 600:
             meteoros.remove(meteororec)
             meteorocai="caindo"
-            
 
-    scorerand=font.render(str(score),True,(65,105,225))
+           
+
+    scorerand=font.render(str(score),True,(225,225,225))
     scorerec=scorerand.get_rect(center=(90,11))
+    
 
 
     for i in range(len(meteoros)) :
@@ -126,13 +130,29 @@ while loop:
                 bullets.remove(tirorec)
                 meteorocai="caindo"
                 tiro_estado="ready"
+    
+    
 
+    if meteororec.colliderect(navrec):
+        vidas-=1
+        meteoros.remove(meteororec)
+        meteorocai="caindo"
+    
+    if vidas == 0:
+        score =0
+        vidas=3
+
+    liferand=font.render(str(vidas),True,(225,225,225))
+    liferrec=liferand.get_rect(center=(770,15))
+    
     
     relogio.tick(120) 
     tela.blit(fundo,(0,0))
     tela.blit(texto,rectex)
     tela.blit(scorerand,scorerec)
+    tela.blit(liferand,liferrec)
     tela.blit(nave, navrec)
+    tela.blit(life,liferec)
     for meteororec in meteoros:
         tela.blit(meteoro,meteororec)
     for tirorec in bullets:
