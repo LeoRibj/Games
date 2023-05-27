@@ -99,16 +99,20 @@ while loop:
             tiro_estado="ready"
             bullets.remove(tirorec)
     
-    
-    
+    speedmet=2
+    if score >= 5:
+        speedmet=4  
+    if score >= 10:
+        speedmet=5
     for meteororec in meteoros:
         #num_caida=random.randint(-10,10)
-        meteororec.y+=5
+        meteororec.y+=speedmet
         #meteororec.x-=num_caida
         meteorocai=".."
         if meteororec.y > 600:
             meteoros.remove(meteororec)
             meteorocai="caindo"
+            
 
     scorerand=font.render(str(score),True,(65,105,225))
     scorerec=scorerand.get_rect(center=(90,11))
@@ -119,8 +123,11 @@ while loop:
             if bullets[j].colliderect(meteoros[i]):
                 score+=1
                 meteoros.remove(meteororec)
+                bullets.remove(tirorec)
                 meteorocai="caindo"
-        
+                tiro_estado="ready"
+
+    
     relogio.tick(120) 
     tela.blit(fundo,(0,0))
     tela.blit(texto,rectex)
