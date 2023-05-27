@@ -38,9 +38,9 @@ print(navrec)
 font=pygame.font.Font(os.path.join("space","assets","Font","Sigmar","Sigmar-Regular.ttf"),16)
 score=0
 texto=font.render('score:',True,(65,105,225))
-scorerand=font.render(str(score),True,(65,105,225))
+
 rectex=texto.get_rect(center=(50,10))
-scorerec=scorerand.get_rect(center=(90,11))
+
 
 pygame.display.set_caption("space kombat")
 
@@ -110,11 +110,16 @@ while loop:
             meteoros.remove(meteororec)
             meteorocai="caindo"
 
-    if meteororec.colliderect(tirorec):
-        score+=1
-        meteoros.remove(meteororec)
-        meteorocai="caindo"
+    scorerand=font.render(str(score),True,(65,105,225))
+    scorerec=scorerand.get_rect(center=(90,11))
 
+
+    for i in range(len(meteoros)) :
+        for j in range(len(bullets)):
+            if bullets[i].colliderect(meteoros[i]):
+                score+=1
+                meteoros.remove(meteororec)
+                meteorocai="caindo"
         
     relogio.tick(120) 
     tela.blit(fundo,(0,0))
