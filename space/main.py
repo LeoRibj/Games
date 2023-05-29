@@ -8,12 +8,13 @@ pygame.init()
 relogio = pygame.time.Clock()
 largura,altura=800,600
 tela = pygame.display.set_mode((largura,altura))
-fundo = pygame.image.load(os.path.join("space","assets","img","espaco.png")).convert_alpha()
+fundo = pygame.image.load(os.path.join("space","assets","img","espaco.jpg")).convert_alpha()
 nave = pygame.image.load(os.path.join("space","assets","img","ship.png")).convert_alpha()
-nave= pygame.transform.scale(nave,(150,80))
+nave= pygame.transform.scale(nave,(100,80))
 fundorec=fundo.get_rect(center=((largura/2,(altura/2))))
 tiro= pygame.image.load(os.path.join("space","assets","img","laser.png")).convert_alpha()
 meteoro= pygame.image.load(os.path.join("space","assets","img","meteor.png")).convert_alpha()
+meteoro= pygame.transform.scale(meteoro,(70,70))
 #tiro= pygame.transform.scale(tiro,(40,40))
 tiro_estado="ready"
 meteorocai="caindo"
@@ -29,7 +30,7 @@ posy_x=500
 navrec= nave.get_rect(center=(posy_y,posy_x))
 
 life = pygame.image.load(os.path.join("space","assets","img","ship.png")).convert_alpha()
-life= pygame.transform.scale(nave,(60,20))
+life= pygame.transform.scale(nave,(30,20))
 liferec= life.get_rect(center=(740,15))
     
 vidas=3
