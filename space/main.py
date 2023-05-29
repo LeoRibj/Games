@@ -15,13 +15,15 @@ fundorec=fundo.get_rect(center=((largura/2,(altura/2))))
 tiro= pygame.image.load(os.path.join("space","assets","img","laser.png")).convert_alpha()
 meteoro= pygame.image.load(os.path.join("space","assets","img","meteor.png")).convert_alpha()
 meteoro= pygame.transform.scale(meteoro,(70,70))
+
+
 #tiro= pygame.transform.scale(tiro,(40,40))
 tiro_estado="ready"
 meteorocai="caindo"
 
 bullets = []
 meteoros=[]
-
+fogos=[]
 
 
 posy_y=500
@@ -60,8 +62,7 @@ def meteoro_vaic(meteoros):
         meteoros.append(meteororec)
     
 
-   
-     
+
 loop=True
 while loop:
     start = int(round(time.time()*1000))  
@@ -92,7 +93,7 @@ while loop:
 
     num_rand=random.randint(0,800)
     meteoro_vaic(meteoros)
-
+    
 
     for tirorec in bullets:
         tirorec.y-=(10)
@@ -142,7 +143,8 @@ while loop:
     if vidas == 0:
         score =0
         vidas=3
-
+    
+    
     liferand=font.render(str(vidas),True,(225,225,225))
     liferrec=liferand.get_rect(center=(770,15))
     
