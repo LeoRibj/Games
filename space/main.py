@@ -88,7 +88,7 @@ while loop:
     if key[pygame.K_a]:
         navrec.x-=6
     if key[pygame.K_SPACE]:
-        if(tiro_estado=='ready'):
+        if tiro_estado=='ready':
             fire_bullet(bullets)
 
     if navrec.x > 800:
@@ -121,6 +121,7 @@ while loop:
             meteoros.remove(meteororec)
             meteorocai="caindo"
 
+    
     camfre=campoforça.get_rect(center=navrec.center) 
          
 
@@ -168,8 +169,8 @@ while loop:
     #if navrec.y>=10:
        # navrec.y-=1
     ##tela.fill((0,0,0))
-    
-    tela.blit(campoforça,camfre)
+    if score == 5:
+        tela.blit(campoforça,camfre)
     pygame.display.update()
     end =float(round(time.time()*1000))  
     #print(f"{end-start} ms")
