@@ -24,7 +24,7 @@ meteorocai="caindo"
 bullets = []
 meteoros=[]
 fogos=[]
-
+campof=[]
 
 posy_y=500
 posy_x=500
@@ -34,7 +34,8 @@ navrec= nave.get_rect(center=(posy_y,posy_x))
 life = pygame.image.load(os.path.join("space","assets","img","ship.png")).convert_alpha()
 life= pygame.transform.scale(nave,(30,20))
 liferec= life.get_rect(center=(740,15))
-    
+campoforça = pygame.image.load(os.path.join("space", "assets","img","campo de força.png")) 
+campoforça= pygame.transform.scale(campoforça,(130,100))
 vidas=3
 
 print(navrec)
@@ -60,6 +61,10 @@ def meteoro_vaic(meteoros):
     if meteorocai=="caindo":
         meteororec=meteoro.get_rect(midtop=(num_rand,0))
         meteoros.append(meteororec)
+    
+
+
+
     
 
 
@@ -93,7 +98,6 @@ while loop:
 
     num_rand=random.randint(0,800)
     meteoro_vaic(meteoros)
-    
 
     for tirorec in bullets:
         tirorec.y-=(10)
@@ -117,12 +121,13 @@ while loop:
             meteoros.remove(meteororec)
             meteorocai="caindo"
 
-           
+    camfre=campoforça.get_rect(center=navrec.center) 
+         
 
     scorerand=font.render(str(score),True,(225,225,225))
     scorerec=scorerand.get_rect(center=(90,11))
     
-
+   
 
     for i in range(len(meteoros)) :
         for j in range(len(bullets)):
@@ -163,6 +168,8 @@ while loop:
     #if navrec.y>=10:
        # navrec.y-=1
     ##tela.fill((0,0,0))
+    
+    tela.blit(campoforça,camfre)
     pygame.display.update()
     end =float(round(time.time()*1000))  
     #print(f"{end-start} ms")
