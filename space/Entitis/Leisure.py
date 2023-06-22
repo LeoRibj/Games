@@ -1,3 +1,4 @@
 import os,pygame
 class Leisure:
-    pass
+    def __int__(self)->None:
+        pass
