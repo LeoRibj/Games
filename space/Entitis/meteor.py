@@ -1,3 +1,4 @@
 import os,pygame
 class Meteor:
-    pass
+    def __init__(self)->None:
+        pass
